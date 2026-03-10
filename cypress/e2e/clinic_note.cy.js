@@ -36,10 +36,11 @@ describe('Clinic Note', () => {
     cy.get('select[data-fieldtype="Select"]').eq(0).select('Student')        //set Patient type to 'Student'
     cy.get('input[data-fieldname="student"]').type('TEST, QA').wait(1000).type('{enter}')     //search and select student
 
-    cy.get('select[data-fieldtype="Select"]').eq(1).select('Sent Home')      //set Status of Person to 'Sent Home'
+    cy.get('input[data-fieldname="visit_reason"]').type('GEN-002').type('{enter}').type('{esc}')         //set Visit Reason to GEN-002
+    cy.get('select[data-fieldname="status_person"]').select('Sent Home')                                 //set Status of Person to 'Sent Home'
     //Select Note areafield and input note
     cy.get('textarea[data-fieldtype="Small Text"]').eq(0).type('Was given paracetamol by the nurse. Asked parent to pick them up to go home and get rest.').wait(1000)
-    cy.get('button[data-fieldname="get_contact_number"]').click()               //click the Get Contact Number button to get contact no. of patient
+    cy.get('button[data-fieldname="get_contact_number"]').click()            //click the Get Contact Number button to get contact no. of patient
     
     //if else statement: if no contanct number get then manually type contact number
     cy.get('input[data-fieldname="contact_numbers"]').then(() =>{
