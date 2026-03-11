@@ -4,9 +4,9 @@ describe ('Login Automation: Correct Credentials', () => {
   // try logging in using correct credentials
   it ('Should login successfully to OLLES Staging Site and go to the School Management System App', () =>{
     cy.visit('https://staging-63.wela-v15.dev/#login')                     // go to the staging site
-    cy.get('input[placeholder="ID Number"]').type('jude.micheal@livro.ph') // get email field > input email
+    cy.get('input[placeholder="ID Number"]').type(Cypress.env('email')) // get email field > input email
     cy.wait(1000)                                                          // wait for 1 second
-    cy.get('#login_password').type('Khaelapus_1027')                       // get password field > type password
+    cy.get('#login_password').type(Cypress.env('password'))                       // get password field > type password
     cy.wait(1000)                                                          // wait for 1 second
     cy.get('.btn-login').click()                                           // click Login button
     cy.url().should('include', '/apps')                                    // confirm login by checking url
@@ -24,7 +24,7 @@ describe ('Login Automation: Incorrect Credentials', () =>{
   //try logging in using wrong credentials                              
   it ('Should fail logging in to the OLLES Staging Site', () =>{
     cy.visit('https://staging-63.wela-v15.dev/#login')                       //visit site
-    cy.get('input[placeholder="ID Number"]').type('jude.micheal@livro.ph')   //get email field > input email
+    cy.get('input[placeholder="ID Number"]').type(Cypress.env('email'))   //get email field > input email
     cy.wait(1000)                                                            //wait 1 second
     cy.get('#login_password').type('dheudhunnndd')                           //get password field > input password
     cy.wait(1000)                                                            //wait 1 second
